@@ -18,7 +18,7 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flash messages
-genai.configure(api_key="AIzaSyBiJmop5tQtklrZa3gvqdSt3o4v4k9iHnI")
+genai.configure(api_key="YOUR_GEMINI_API_KEY")
 
 # MongoDB connection
 app.config["MONGO_URI"] = "mongodb://localhost:27017/travelDB"  # Replace with your MongoDB URI if different
@@ -37,8 +37,8 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # For Gmail
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'rajeshkumarpanda235@gmail.com'
-app.config['MAIL_PASSWORD'] = 'pmje ybac glnn wygd'  # Replace with your actual app password
+app.config['MAIL_USERNAME'] = 'YOUR EMAIL-ID'
+app.config['MAIL_PASSWORD'] = 'YOUR EMAIL-ID SECRECT KEY'  
 app.config['MAIL_DEFAULT_SENDER'] = 'rajeshkumarpanda235@gmail.com'
 
 mail = Mail(app)
@@ -358,7 +358,7 @@ def process_payment():
     total_price = data.get("total_price")
 
     try:
-        return render_template("payment.html", email=email, total_price=total_price, razorpay_key="rzp_test_lfgh1NKknP4NW7")
+        return render_template("payment.html", email=email, total_price=total_price, razorpay_key="YOUR RAZORPAY SECRECT KEY")
 
     except Exception as e:
         print("Error:", str(e))
