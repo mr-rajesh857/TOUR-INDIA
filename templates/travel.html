@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Information Form</title>
+    <!-- <link rel="stylesheet" href="travel_css.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/travel_css.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="image-container">
+                <!-- <img src="./travel-image.png" alt="Travel" class="travel-image"> -->
+                <img src="{{ url_for('static', filename='img/travel-image.png') }}"  height="auto" class="travel-image" alt="Travel">
+            </div>
+            <div class="form-content">
+                <h2>Travel Information Form</h2>
+                <p>Please provide us with the contact information below and we will arrange to reserve your ticket.</p>
+                <form id="travelForm" action="/submit_travel_booking" method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <select class="form-control" id="title" name="title" required>
+                            <option value="">Please Select</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Ms">Ms</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-name">Contact Name</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" id="first-name" name="first_name" placeholder="First Name" required>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birth-date">Birth Date</label>
+                        <input type="date" class="form-control" id="birth-date" name="birth_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organization-name">Organization Name</label>
+                        <input type="text" class="form-control" id="organization-name" name="organization_name" placeholder="Organization Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone-number">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone-number" name="phone_number" placeholder="(000) 000-0000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="departure-country">Departure Country</label>
+                        <select class="form-control" id="departure-country" name="departure_country" required>
+                            <option value="">Please Select</option>
+                            <!-- Add more country options as needed -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination-country">Destination Country</label>
+                        <select class="form-control" id="destination-country" name="destination_country" required>
+                            <option value="">Please Select</option>
+                            <!-- Add more country options as needed -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="departure-datetime">Departure Date & Time</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="date" class="form-control" id="departure-date" name="departure_date" required>
+                            </div>
+                            <div class="col">
+                                <input type="time" class="form-control" id="departure-time" name="departure_time" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="return-datetime">Return Date & Time</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="date" class="form-control" id="return-date" name="return_date" required>
+                            </div>
+                            <div class="col">
+                                <input type="time" class="form-control" id="return-time" name="return_time" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="class-of-service">Class of Service</label>
+                        <select class="form-control" id="class-of-service" name="class_of_service" required>
+                            <option value="">Please Select</option>
+                            <option value="Economy">Economy</option>
+                            <option value="Business">Business</option>
+                            <option value="First">First</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferred-hotel">Preferred Hotel Brand</label>
+                        <input type="text" class="form-control" id="preferred-hotel" name="preferred_hotel" placeholder="Preferred Hotel Brand">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferred-airline">Preferred Airline</label>
+                        <input type="text" class="form-control" id="preferred-airline" name="preferred_airline" placeholder="Preferred Airline">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additional-information">Additional Information</label>
+                        <textarea class="form-control" id="additional-information" name="additional_information" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Submit Form</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tour Recommendation System</h1>
+
+    <form method="POST" action="/recommend">
+        <input type="text" name="state" placeholder="Enter State Name" required><br><br>
+        <input type="text" name="city" placeholder="Enter City Name" required><br><br>
+        <input type="submit" value="Get Recommendation">
+    </form>
+
+    {% if recommended_place %}
+        <div class="result">
+            <h3>Recommended Place: {{ recommended_place }}</h3>
+            <p>Description: {{ description }}</p>
+        </div>
+    {% endif %}
+
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tourism Recommendation</title>
+</head>
+<body>
+    <h2>Tourism Place Recommendation</h2>
+    <form action="/recommend" method="post">
+        <label>State:</label>
+        <input type="text" name="state" required><br><br>
+
+        <label>City:</label>
+        <input type="text" name="city" required><br><br>
+
+        <input type="submit" value="Recommend Places">
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tourism Recommendation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Tourism Place Recommendation</h2>
+    
+    <form action="/recommend" method="post" class="p-4 border rounded bg-white shadow">
+        <div class="mb-3">
+            <label class="form-label">State:</label>
+            <input type="text" name="state" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">City:</label>
+            <input type="text" name="city" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Recommend Places</button>
+    </form>
+</div>
+
+</body>
+</html>

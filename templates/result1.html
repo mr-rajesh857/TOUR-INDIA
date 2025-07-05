@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommended Places</title>
+</head>
+<body>
+    <h2>Recommended Places</h2>
+
+    {% if places %}
+        <ul>
+        {% for place, desc in places %}
+            <li><b>{{ place }}</b>: {{ desc }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data available for this location.</p>
+    {% endif %}
+
+    <a href="/recommendation">Search Again</a>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommended Places</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        function showMap(place) {
+            const mapFrame = document.getElementById('mapFrame');
+            const query = place + " tourist place";
+            const apiKey = 'AIzaSyDal-VVuTPrTKnd9ppMMSDK7XLFXMv6rpU';  // Add your API Key here
+            mapFrame.src = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + encodeURIComponent(query);
+        }
+    </script>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Recommended Places</h2>
+
+    {% if places %}
+        <ul class="list-group mb-4">
+            {% for place, desc in places %}
+                <li class="list-group-item">
+                    <b>{{ place }}</b>: {{ desc }}
+                    <button onclick="showMap('{{ place | safe }}')" class="btn btn-sm btn-outline-primary float-end">View Map</button>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="mb-4">
+            <iframe id="mapFrame" width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+
+    {% else %}
+        <div class="alert alert-warning">No data available for this location.</div>
+    {% endif %}
+
+    <a href="/recommendation" class="btn btn-secondary w-100">Search Again</a>
+</div>
+
+</body>
+</html>

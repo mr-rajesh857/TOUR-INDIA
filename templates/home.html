@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tourism Recommendation</title>
+</head>
+<body>
+    <h1>Find Tourist Places</h1>
+    <form action="{{ url_for('recommend') }}" method="post">
+        State: <input type="text" name="state" required><br><br>
+        City: <input type="text" name="city" required><br><br>
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>

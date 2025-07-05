@@ -1,0 +1,282 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Trip</title>
+    <style>
+      body{
+    background-image: url("./img/hot-air-ballon.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Use the full viewport height */
+    margin: 0; /* Remove default margin to ensure full-page centering */
+      }
+
+  
+      select {
+    width: 200px; /* Set the width of the dropdown */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  /* CSS styles for the options within the select element */
+  option {
+    font-size: 16px;
+  }
+
+  /* CSS styles for the container div */
+  .container {
+    display: inline-block;
+    text-align: center; /* Center align the content */
+    margin-top: 100px; /* Add some top margin for spacing */
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: white;
+  }
+  .small{
+    display: inline-block;
+    font-size: 20px;
+  font-family: "RM Neue",sans-serif;
+    
+  }
+  label{
+  font-family: "RM Neue",sans-serif;
+    
+  }
+  input{
+    border: 1px solid #ccc;
+    height: 25px;
+
+    width: 200px; /* Set the width of the dropdown */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+
+
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin-left:230px;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
+}
+
+h1{
+  color: white;
+  font-size: 140px;
+  font-family:"RM Neue",sans-serif;
+  margin: 0;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+    <h1>MY TRIP</h1>
+    <div class="container">
+      <Form>
+        <label for="fruit" class="small">Budget in(k)</label>
+        <select id="fruit" name="fruit">
+          <option value="apple">10k-20k</option>
+          <option value="banana">20k-30k</option>
+          <option value="cherry">30k-40k</option>
+          <option value="grape">40k-50k</option>
+      
+        </select>
+      
+        <br><br>
+      
+        <label for="days" class="small">Spend Days</label>
+        <select id="days" name="days">
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="7">7</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
+          <option value="60">60</option>
+          <option value="green">Green</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option> 
+        </select>
+      
+        <br><br>
+
+        <p class="small">From</p>
+        <input type="text" id="from">
+        <p class="small">to</p>
+        <input id="to" type="text">
+        <button id="search"class="button-22"  type="submit">Search</button>
+      </div>
+       </Form>
+       <script>
+           // Add a click event listener to the button
+           document.getElementById("search").addEventListener("click", function() {
+            // Redirect to result.html
+            window.location.href = "result.html";
+        });
+      </script> 
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Trip</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+        body {
+            background-image: url("{{ url_for('static', filename='img/hot-air-ballon.jpg') }}");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            color: #333;
+        }
+
+        h1 {
+            color: white;
+            font-size: 80px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        label {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        select, input {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button-22 {
+            background-color: #0276FF;
+            border-radius: 8px;
+            border: none;
+            box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Raleway", sans-serif;
+            font-size: 16px;
+            padding: 10px 21px;
+            text-align: center;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .button-22:hover {
+            background-color: #1C84FF;
+        }
+
+        .button-22:active {
+            background-color: #006AE8;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MY TRIP</h1>
+    <div class="container">
+        <form>
+            <label for="budget">Budget in (k)</label>
+            <select id="budget" name="budget">
+                <option value="10k-20k">10k-20k</option>
+                <option value="20k-30k">20k-30k</option>
+                <option value="30k-40k">30k-40k</option>
+                <option value="40k-50k">40k-50k</option>
+            </select>
+
+            <label for="days">Spend Days</label>
+            <select id="days" name="days">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+                <option value="60">60</option>
+            </select>
+
+            <label for="from">From</label>
+            <input type="text" id="from" name="from">
+
+            <label for="to">To</label>
+            <input type="text" id="to" name="to">
+
+            <button id="search" class="button-22" type="submit">Search</button>
+        </form>
+    </div>
+</body>
+
+</html>

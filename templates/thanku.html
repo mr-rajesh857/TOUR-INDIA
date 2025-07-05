@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Popup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 8px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .popup.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .popup h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .popup p {
+            margin: 10px 0 0;
+            font-size: 16px;
+        }
+
+        .close-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="thankYouPopup" class="popup">
+        <h2>Thank You!</h2>
+        <p>We appreciate your visit.</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            var popup = document.getElementById('thankYouPopup');
+            popup.classList.add('show');
+        }
+
+        function closePopup() {
+            var popup = document.getElementById('thankYouPopup');
+            popup.classList.remove('show');
+        }
+
+        window.onload = function() {
+            setTimeout(showPopup, 1000); // Show popup after 1 second
+        };
+    </script>
+</body>
+</html>

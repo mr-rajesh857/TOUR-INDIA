@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/register" method="post">
+                <h1>Create Account</h1>
+                <input type="text" name="name" placeholder="Name" />
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/signin" method="post">
+                <h1>Sign In</h1>
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button>Sign In</button>
+                <a  href="forgot_password">Forgot your password?</a>
+                <p><a href="/change_password" id="changePasswordLink">Change Password</a></p>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+<!-- <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeForgotPassword">&times;</span>
+        <h2>Forgot Password</h2>
+        <form id="forgotPasswordForm" method="POST" action="/forgot_password">
+            <label for="email">Enter your email:</label>
+            <input type="email" id="forgotEmail" name="email" placeholder="Email" required>
+            <button type="submit">Send Reset Link</button>
+        </form>
+    </div>
+</div>
+
+Reset Password Modal 
+<div id="resetPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeResetPassword">&times;</span>
+        <h2>Reset Password</h2>
+        <form id="resetPasswordForm">
+            <input type="password" id="newPassword" name="password" placeholder="New Password" required>
+            <button type="submit">Reset Password</button>
+        </form>
+    </div>
+</div> --!>
+
+
+<!-- <div id="changePasswordForm" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeChangePassword">&times;</span>
+        <h2>Change Password</h2>
+        <form id="passwordChangeForm" action="/change_password" method="POST">
+            <label for="email">Enter Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="currentPassword">Current Password:</label>
+            <input type="password" id="currentPassword" name="currentPassword" placeholder="Current Password" required>
+
+            <label for="newPassword">Enter New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="New Password" required>
+
+            <button type="submit">Update Password</button>
+        </form>
+    </div>
+</div> -->
+
+
+
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+<!-- 
+    <script>
+        
+        // Open and Close Modals
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        // const changePasswordForm = document.getElementById('changePasswordForm');
+        const forgotPasswordTrigger = document.getElementById('forgotPasswordTrigger');
+        const changePasswordLink = document.getElementById('changePasswordLink');
+        const closeForgotPassword = document.getElementById('closeForgotPassword');
+        // const closeChangePassword = document.getElementById('closeChangePassword');
+        // const passwordChangeForm = document.getElementById('passwordChangeForm');
+        
+
+        if (forgotPasswordTrigger) {
+            forgotPasswordTrigger.onclick = () => {
+                console.log('Forgot Password Trigger Clicked');
+                forgotPasswordModal.style.display = 'flex';
+            };
+        } else {
+            console.error('Forgot Password Trigger not found!');
+        }
+
+        if (closeForgotPassword) {
+            closeForgotPassword.onclick = () => {
+                console.log('Forgot Password Modal Closed');
+                forgotPasswordModal.style.display = 'none';
+            };
+        }
+        if (closeResetPassword) {
+            closeResetPassword.onclick = () => {
+                console.log('Reset Password Modal Closed');
+                resetPasswordModal.style.display = 'none';
+            };
+        }
+        // Change Password modal logic
+        changePasswordLink.onclick = () => {
+            changePasswordForm.style.display = 'flex';
+        };
+
+        closeChangePassword.onclick = () => {
+            changePasswordForm.style.display = 'none';
+        };
+
+
+
+        // Close on Outside Click
+        window.onclick = (event) => {
+            if (event.target === forgotPasswordModal) {
+                console.log('Clicked Outside Forgot Password Modal');
+                forgotPasswordModal.style.display = 'none';
+            }
+            if (event.target === resetPasswordModal) {
+                console.log('Clicked Outside Reset Password Modal');
+                resetPasswordModal.style.display = 'none';
+            }
+        }; 
+
+
+//  Forgot password form submission
+    // document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
+    //     event.preventDefault();  // Prevent default form submission
+        
+    //     const email = document.getElementById('forgotEmail').value;
+        
+    //     // Prepare data to be sent as JSON
+    //     const data = { email: email };
+
+    //     fetch('/forgot_password', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',  // Set the correct content type
+    //         },
+    //         body: JSON.stringify(data),  // Convert data to JSON string
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         alert(data.message);  // Show success or error message from backend
+    //         if (response.status === 200) {
+    //             // Optionally close the modal or reset form fields
+    //             document.getElementById('forgotPasswordModal').style.display = 'none';
+    //         }
+    //     })
+    //     .catch(error => {
+    //         alert("Error: " + error);
+    //     });
+    // });
+// Forgot password form submission
+document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent default form submission
+    
+    const email = document.getElementById('forgotEmail').value;
+    
+    // Prepare data to be sent as JSON
+    const data = { email: email };
+
+    fetch('/forgot_password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  // Ensure the content type is set to JSON
+        },
+        body: JSON.stringify(data),  // Convert data to JSON string
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);  // Show success or error message from backend
+        if (data.status === 200) {  // Use correct response data status
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
+    })
+    .catch(error => {
+        alert("Error: " + error);
+    });
+});
+
+
+                </script> -->
+    
+    
+</body>
+</html>

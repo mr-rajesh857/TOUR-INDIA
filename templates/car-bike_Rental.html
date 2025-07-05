@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car & Bike Rental</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: white;
+        }
+        header {
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(255, 69, 0, 0.5);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+        nav {
+            display: flex;
+        }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .nav-links li a:hover {
+            color: #ff4500;
+        }
+        .vehicle-list {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .vehicle-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .vehicle-card {
+            background: rgba(255, 69, 0, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            width: 280px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+            transition: 0.3s;
+        }
+        .vehicle-card:hover {
+            transform: scale(1.05);
+        }
+        .vehicle-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .booking {
+            text-align: center;
+            padding: 40px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+            display: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, select, button {
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+        }
+        button:hover {
+            background: #ff8c00;
+            transform: scale(1.1);
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: black;
+        }
+    </style>
+    <script>
+        function showBookingForm(vehicleType, vehicleName, pricePerHour) {
+            document.getElementById('book').style.display = 'block';
+            document.getElementById('vehicle').value = vehicleType;
+            document.getElementById('vehicle-name').value = vehicleName;
+            document.getElementById('price-per-hour').value = pricePerHour;
+        }
+
+        function calculatePrice() {
+            const pickupTime = new Date(document.getElementById('pickup-time').value);
+            const returnTime = new Date(document.getElementById('return-time').value);
+            const pricePerHour = parseFloat(document.getElementById('price-per-hour').value);
+            
+            if (pickupTime && returnTime && pricePerHour) {
+                const diffInHours = (returnTime - pickupTime) / (1000 * 60 * 60);
+                const totalPrice = Math.max(diffInHours * pricePerHour, 0).toFixed(2);
+                document.getElementById('total-price').innerText = `Total Price: $${totalPrice}`;
+                document.getElementById('confirm-payment').style.display = 'block';
+            }
+        }
+
+        function proceedToPayment() {
+            var options = {
+                "key": "rzp_test_lfgh1NKknP4NW7", // Replace with your Razorpay Key
+                "amount": parseFloat(document.getElementById('total-price').innerText.split('$')[1]) * 100,
+                "currency": "INR",
+                "name": "RideEase",
+                "description": "Rental Payment",
+                "handler": function (response) {
+                    alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#vehicles">Vehicles</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="vehicle-list" id="vehicles">
+        <h2>Choose Your Ride</h2>
+        <div class="vehicle-container">
+            <script>
+                const vehicles = [
+                    { type: 'Car', name: 'Toyota Camry', price: 20 },
+                    { type: 'Car', name: 'Honda Civic', price: 18 },
+                    { type: 'Car', name: 'BMW X5', price: 35 },
+                    { type: 'Bike', name: 'Honda CBR500R', price: 15 }
+                ];
+                vehicles.forEach(vehicle => {
+                    document.write(`
+                        <div class="vehicle-card">
+                            <h3>${vehicle.name}</h3>
+                            <p>Type: ${vehicle.type}</p>
+                            <p>Price per hour: $${vehicle.price}</p>
+                            <button onclick="showBookingForm('${vehicle.type}', '${vehicle.name}', ${vehicle.price})">Rent Now</button>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+    
+    <div class="booking" id="book">
+        <h2>Book Your Ride</h2>
+        <form>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="text" id="vehicle" readonly>
+            <input type="text" id="vehicle-name" readonly>
+            <input type="number" id="price-per-hour" readonly>
+            <label>Pickup Date & Time:</label>
+            <input type="datetime-local" id="pickup-time" required>
+            <label>Return Date & Time:</label>
+            <input type="datetime-local" id="return-time" required onchange="calculatePrice()">
+            <p id="total-price"></p>
+            <button type="button" id="confirm-payment" style="display:none;" onclick="proceedToPayment()">Confirm Payment</button>
+        </form>
+    </div>
+</body>
+</html>

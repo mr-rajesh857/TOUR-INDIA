@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h2>Complete Your Payment</h2>
+    <p>Email: {{ email }}</p>
+    <p>Total Price: ₹{{ total_price }}</p>
+
+    <button id="pay-button">Pay Now</button>
+
+    <script>
+        document.getElementById('pay-button').addEventListener('click', function() {
+            var options = {
+                "key": "{{ razorpay_key }}",  // Razorpay Key ID
+                "amount": {{ total_price * 100 }}, // Convert to paise
+                "currency": "INR",
+                "name": "Vehicle Rental Service",
+                "description": "Payment for vehicle booking",
+                "image": "https://your-logo-url.com/logo.png",
+                "handler": function (response){
+                    alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                    window.location.href = "/payment_success?payment_id=" + response.razorpay_payment_id;
+                },
+                "prefill": {
+                    "email": "{{ email }}"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
+</body>
+</html>
